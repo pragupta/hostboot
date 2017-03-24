@@ -2165,23 +2165,57 @@
     </attribute>
 </targetType>
 
-<!-- NV
-     Nimbus : 1 per chip
-     Cumulus: 1 per chip -->
+<!-- OBUS Brick
+     Nimbus : 3 per OBUS
+     Cumulus: 3 per OBUS -->
+<targetType>
+    <id>unit-obus-brick-power9</id>
+    <parent>unit</parent>
+    <attribute>
+        <id>TYPE</id>
+        <default>OBUS_BRICK</default>
+    </attribute>
+    <attribute><id>CDM_DOMAIN</id><default>FABRIC</default></attribute>
+    <attribute><id>DECONFIG_GARDABLE</id><default>1</default></attribute>
+    <attribute><id>SCRATCH_UINT8_1</id><default>5</default></attribute>
+    <attribute><id>HUID</id></attribute>
+    <attribute><id>HWAS_STATE_CHANGED_SUBSCRIPTION_MASK</id>
+        <default>0x00000001</default> <!-- GARD -->
+    </attribute>
+    <attribute><id>OBUS_BRICK_LANE_MASK</id></attribute>
+    <attribute><id>OPTICS_CONFIG_MODE</id><default>SMP</default></attribute>
+    <attribute><id>PARENT_PERVASIVE</id></attribute>
+</targetType>
+
+<targetType>
+    <id>unit-obus-brick-nimbus</id>
+    <parent>unit-obus-brick-power9</parent>
+    <attribute>
+        <id>MODEL</id>
+        <default>NIMBUS</default>
+    </attribute>
+</targetType>
+
+<targetType>
+    <id>unit-obus-brick-cumulus</id>
+    <parent>unit-obus-brick-power9</parent>
+    <attribute>
+        <id>MODEL</id>
+        <default>CUMULUS</default>
+    </attribute>
+</targetType>
+
+<!-- NVLINK
+     Nimbus : 1 per obus brick
+     Cumulus: 1 per obus brick -->
 <targetType>
     <id>unit-nv-power9</id>
-    <parent>unit</parent>
+    <parent>unit-obus-brick-power9</parent>
     <attribute>
         <id>TYPE</id>
         <default>NV</default>
     </attribute>
-    <attribute><id>DECONFIG_GARDABLE</id><default>1</default></attribute>
-    <attribute><id>CDM_DOMAIN</id><default>FABRIC</default></attribute>
-    <attribute><id>SCRATCH_UINT8_1</id><default>5</default></attribute>
-    <attribute><id>PARENT_PERVASIVE</id></attribute>
-    <attribute><id>HWAS_STATE_CHANGED_SUBSCRIPTION_MASK</id>
-        <default>0x00000001</default> <!-- GARD -->
-    </attribute>
+    <attribute><id>OPTICS_CONFIG_MODE</id><default>NVLINK</default></attribute>
 </targetType>
 
 <targetType>
@@ -2196,6 +2230,67 @@
 <targetType>
     <id>unit-nv-cumulus</id>
     <parent>unit-nv-power9</parent>
+    <attribute>
+        <id>MODEL</id>
+        <default>CUMULUS</default>
+    </attribute>
+</targetType>
+
+<!-- CAPILINK
+     Nimbus : 1 per obus brick
+     Cumulus: 1 per obus brick -->
+<targetType>
+    <id>unit-capilink-power9</id>
+    <parent>unit-obus-brick-power9</parent>
+    <attribute>
+        <id>TYPE</id>
+        <default>CAPILINK</default>
+    </attribute>
+    <attribute><id>OPTICS_CONFIG_MODE</id><default>CAPILINK</default></attribute>
+</targetType>
+
+<targetType>
+    <id>unit-capilink-nimbus</id>
+    <parent>unit-capilink-power9</parent>
+    <attribute>
+        <id>MODEL</id>
+        <default>NIMBUS</default>
+    </attribute>
+</targetType>
+
+<targetType>
+    <id>unit-capilink-cumulus</id>
+    <parent>unit-capilink-power9</parent>
+    <attribute>
+        <id>MODEL</id>
+        <default>CUMULUS</default>
+    </attribute>
+</targetType>
+
+<!-- NPU
+     Nimbus : 1 per proc chip
+     Cumulus: 1 per proc chip -->
+<targetType>
+    <id>unit-npu-power9</id>
+    <parent>unit</parent>
+    <attribute>
+        <id>TYPE</id>
+        <default>NPU</default>
+    </attribute>
+</targetType>
+
+<targetType>
+    <id>unit-npu-nimbus</id>
+    <parent>unit-npu-power9</parent>
+    <attribute>
+        <id>MODEL</id>
+        <default>NIMBUS</default>
+    </attribute>
+</targetType>
+
+<targetType>
+    <id>unit-npu-cumulus</id>
+    <parent>unit-npu-power9</parent>
     <attribute>
         <id>MODEL</id>
         <default>CUMULUS</default>
